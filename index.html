@@ -26,12 +26,18 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="d-flex justify-content-center align-items-center">
-        <a href="#" class="btn btn-primary my-2 mr-2">Limpar</a>
-        <a href="#" class="btn btn-primary my-2">Sortear</a>
+<div class="container" style="margin-top: 10px">
+    <div class="row justify-content-center align-items-center">
+        <div class="text-center col-md-3">
+            <button class="btn btn-primary" onclick="sortearTimes()">Sortear Times</button>
+        </div>
+
+        <div class="text-center col-md-3">
+            <button class="btn btn-primary" onclick="sortearTimes()">Sortear já cadastrados</button>
+        </div>
     </div>
 </div>
+
 <div class="container-fluid ">
     <h1 class="text-center mt-12 mb-12">Times de Membros</h1>
 
@@ -131,58 +137,89 @@
         }
     ];
 
+    function sortearOrdemAleatoria(array) {
+        const newArray = array.slice(); // Clonar o array para não alterar o original
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
 
-    const teamsContainer = document.getElementById('teamsContainer');
+    function recriarDiv() {
+        const novaDiv = document.createElement('div');
+        novaDiv.className = 'row';
+        novaDiv.id = 'teamsContainer';
 
-    let rowDiv;
-    for (let i = 0; i < jsonData.length; i++) {
-        if (i % 5 === 0) {
-            if (rowDiv) {
-                teamsContainer.appendChild(rowDiv);
-            }
-
-            rowDiv = document.createElement('div');
-            rowDiv.className = 'row mb-4 col-md-12 center-images';
-
-            const timeNumber = document.createElement('div');
-            timeNumber.className = 'col-md-12 text-center h4';
-            timeNumber.textContent = 'Time ' + (i / 5 + 1);
-
-            rowDiv.appendChild(timeNumber);
+        // Aqui você pode adicionar os novos elementos à novaDiv
+        for (let i = 0; i < jsonData.length; i++) {
+            const member = jsonData[i];
+            const memberCard = document.createElement('div');
+            // ... (criar elementos internos, como imagem e nome)
+            novaDiv.appendChild(memberCard);
         }
 
-        const member = jsonData[i];
+        // Substituir a div antiga pela nova
+        teamsContainer.parentNode.replaceChild(novaDiv, teamsContainer);
+    }
 
-        const memberCard = document.createElement('div');
-        memberCard.className = 'col-md-2';
+    function sortearTimes() {
+        recriarDiv();
 
-        const card = document.createElement('div');
-        card.className = 'd-flex justify-content-center align-items-center card text-center';
+        const ordemAleatoria = sortearOrdemAleatoria(jsonData);
 
-        const image = document.createElement('img');
-        image.src = member.imagem;
-        image.alt = member.nome + "'s Image";
-        image.className = 'card-img-top';
-        image.style.width = '100px';
-        image.style.height = '100px';
-        image.style.marginTop= '10px';
+        const teamsContainer = document.getElementById('teamsContainer');
 
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
+        let rowDiv;
+        for (let i = 0; i < ordemAleatoria.length; i++) {
+            if (i % 5 === 0) {
+                if (rowDiv) {
+                    teamsContainer.appendChild(rowDiv);
+                }
 
-        const name = document.createElement('h5');
-        name.className = 'card-title';
-        name.textContent = member.nome;
+                rowDiv = document.createElement('div');
+                rowDiv.className = 'row mb-4 col-md-12 center-images';
 
-        cardBody.appendChild(name);
-        card.appendChild(image);
-        card.appendChild(cardBody);
-        memberCard.appendChild(card);
+                const timeNumber = document.createElement('div');
+                timeNumber.className = 'col-md-12 text-center h4';
+                timeNumber.textContent = 'Time ' + (i / 5 + 1);
 
-        rowDiv.appendChild(memberCard);
+                rowDiv.appendChild(timeNumber);
+            }
 
-        if (i === jsonData.length - 1) {
-            teamsContainer.appendChild(rowDiv);
+            const member = ordemAleatoria[i];
+
+            const memberCard = document.createElement('div');
+            memberCard.className = 'col-md-2';
+
+            const card = document.createElement('div');
+            card.className = 'd-flex justify-content-center align-items-center card text-center';
+
+            const image = document.createElement('img');
+            image.src = member.imagem;
+            image.alt = member.nome + "'s Image";
+            image.className = 'card-img-top';
+            image.style.width = '100px';
+            image.style.height = '100px';
+            image.style.marginTop = '10px';
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            const name = document.createElement('h5');
+            name.className = 'card-title';
+            name.textContent = member.nome;
+
+            cardBody.appendChild(name);
+            card.appendChild(image);
+            card.appendChild(cardBody);
+            memberCard.appendChild(card);
+
+            rowDiv.appendChild(memberCard);
+
+            if (i === ordemAleatoria.length - 1) {
+                teamsContainer.appendChild(rowDiv);
+            }
         }
     }
 </script>
