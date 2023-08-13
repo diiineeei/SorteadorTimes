@@ -1,0 +1,169 @@
+<!--
+const jsonData = [
+        {
+            "nome": "Membro1",
+            "imagem": "url_da_imagem1.jpg"
+        },
+        {
+            "nome": "Membro2",
+            "imagem": "url_da_imagem2.jpg"
+        },
+        {
+            "nome": "Membro3",
+            "imagem": "url_da_imagem3.jpg"
+        },
+        {
+            "nome": "Membro4",
+            "imagem": "url_da_imagem4.jpg"
+        },
+        {
+            "nome": "Membro5",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro6",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro7",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro8",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro9",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro10",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro11",
+            "imagem": "url_da_imagem5.jpg"
+        },
+    ];
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Times de Membros</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <h1 class="mt-12 mb-12">Times de Membros</h1>
+
+    <div class="row" id="teamsContainer">
+        <!-- Aqui os times serão adicionados -->
+    </div>
+</div>
+
+<style>
+    .center-images {
+        display: flex;
+        justify-content: center;
+    }
+
+    .center-images .card {
+        margin: 10px;
+    }
+</style>
+
+<script>
+    const jsonData = [
+        {
+            "nome": "Membro1",
+            "imagem": "url_da_imagem1.jpg"
+        },
+        {
+            "nome": "Membro2",
+            "imagem": "url_da_imagem2.jpg"
+        },
+        {
+            "nome": "Membro3",
+            "imagem": "url_da_imagem3.jpg"
+        },
+        {
+            "nome": "Membro4",
+            "imagem": "url_da_imagem4.jpg"
+        },
+        {
+            "nome": "Membro5",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro6",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro7",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro8",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro9",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro10",
+            "imagem": "url_da_imagem5.jpg"
+        },
+        {
+            "nome": "Membro11",
+            "imagem": "url_da_imagem5.jpg"
+        },
+    ];
+
+
+    const teamsContainer = document.getElementById('teamsContainer');
+
+    let rowDiv;
+    for (let i = 0; i < jsonData.length; i++) {
+        if (i % 5 === 0) {
+            rowDiv = document.createElement('div');
+            rowDiv.className = 'row mb-4 center-images col-md-12';
+        }
+
+        const member = jsonData[i];
+
+        const memberCard = document.createElement('div');
+        memberCard.className = 'col-md-2';
+
+        const card = document.createElement('div');
+        card.className = 'd-flex justify-content-center align-items-center card text-center';
+
+        const image = document.createElement('img');
+        image.src = member.imagem;
+        image.alt = member.nome + "'s Image";
+        image.className = 'card-img-top';
+        image.style.width = '100px';
+        image.style.height = '100px';
+
+        const cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+
+        const name = document.createElement('h5');
+        name.className = 'card-title';
+        name.textContent = member.nome;
+
+        cardBody.appendChild(name);
+        card.appendChild(image);
+        card.appendChild(cardBody);
+        memberCard.appendChild(card);
+
+        rowDiv.appendChild(memberCard);
+
+        if (i % 5 === 4 || i === jsonData.length - 1) {
+            teamsContainer.appendChild(rowDiv);
+        }
+    }
+</script>
+</body>
+</html>
