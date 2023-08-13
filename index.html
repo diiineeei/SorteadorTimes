@@ -14,9 +14,10 @@
     </style>
 </head>
 <body>
-
+<div class="container">
     <h1 class="text-center jumbotron-heading">Sorteador de Times 8:30</h1>
     <p class="lead text-muted">Meu sorteador é uma aplicação simples e eficiente projetada para ajudar a realizar sorteios de forma fácil e rápida. Ele foi desenvolvido para ser uma ferramenta prática e útil, permitindo que você sorteie equipes, prêmios ou qualquer outro tipo de seleção aleatória.</p>
+</div>
 </div>
 <div class="container">
     <div class="row justify-content-center align-items-center">
@@ -27,8 +28,8 @@
 </div>
 <div class="container">
     <div class="d-flex justify-content-center align-items-center">
-        <a href="#" class="btn btn-primary my-2 mr-2">Call-to-action principal</a>
-        <a href="#" class="btn btn-primary my-2">Call-to-action principal</a>
+        <a href="#" class="btn btn-primary my-2 mr-2">Limpar</a>
+        <a href="#" class="btn btn-primary my-2">Sortear</a>
     </div>
 </div>
 <div class="container-fluid ">
@@ -136,8 +137,18 @@
     let rowDiv;
     for (let i = 0; i < jsonData.length; i++) {
         if (i % 5 === 0) {
+            if (rowDiv) {
+                teamsContainer.appendChild(rowDiv);
+            }
+
             rowDiv = document.createElement('div');
-            rowDiv.className = 'row mb-4 center-images col-md-12';
+            rowDiv.className = 'row mb-4 col-md-12 center-images';
+
+            const timeNumber = document.createElement('div');
+            timeNumber.className = 'col-md-12 text-center h4';
+            timeNumber.textContent = 'Time ' + (i / 5 + 1);
+
+            rowDiv.appendChild(timeNumber);
         }
 
         const member = jsonData[i];
@@ -154,6 +165,7 @@
         image.className = 'card-img-top';
         image.style.width = '100px';
         image.style.height = '100px';
+        image.style.marginTop= '10px';
 
         const cardBody = document.createElement('div');
         cardBody.className = 'card-body';
@@ -169,10 +181,13 @@
 
         rowDiv.appendChild(memberCard);
 
-        if (i % 5 === 4 || i === jsonData.length - 1) {
+        if (i === jsonData.length - 1) {
             teamsContainer.appendChild(rowDiv);
         }
     }
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
