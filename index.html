@@ -7,7 +7,7 @@
     <meta name='author' content='Withinpixels'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta name='theme-color' content='#000000'>
-    <base href='/'>
+    <base href='/SorteadorTimes'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel='manifest' href='https://diiineeei.github.io/SorteadorTimes/public/manifest.json'>
     <style>
@@ -21,7 +21,12 @@
 </head>
 <body>
 <script>
-    navigator.serviceWorker.register('pwabuilder-sw.js')
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register('/pwabuilder-sw.js')
+    }
+    else {
+        console.error("Service workers are not supported.");
+    }
 </script>
 <div class="container">
     <h1 class="text-center jumbotron-heading">Sorteador de Times 8:30</h1>
