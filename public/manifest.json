@@ -2,7 +2,7 @@
   "background_color": "#ffffff",
   "description": "Aplicação para sortear times no futebol de domingo",
   "dir": "ltr",
-  "display": "fullscreen",
+  "display": "standalone",
   "name": "Sorteio futnerd",
   "orientation": "any",
   "scope": "/SorteadorTimes/",
@@ -32,11 +32,9 @@
   ],
   "shortcuts": [],
   "display_override": [
-    "browser",
-    "fullscreen",
-    "minimal-ui",
     "standalone",
-    "window-controls-overlay"
+    "fullscreen",
+    "minimal-ui"
   ],
   "screenshots": [
     {
