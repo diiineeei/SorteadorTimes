@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
     <title>Sorteio de times</title>
+    <meta charset="UTF-8">
+    <meta name='description' content='Sorteio futnerd'>
+    <meta name='author' content='Withinpixels'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta name='theme-color' content='#000000'>
+    <base href='/'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel='manifest' href='https://diiineeei.github.io/SorteadorTimes/public/manifest.json'>
     <style>
@@ -15,8 +20,8 @@
     </style>
 </head>
 <body>
-<script src="pwabuilder-sw.js">
-    register();
+<script>
+    navigator.serviceWorker.register('pwabuilder-sw.js')
 </script>
 <div class="container">
     <h1 class="text-center jumbotron-heading">Sorteador de Times 8:30</h1>
