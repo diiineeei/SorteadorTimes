@@ -1,0 +1,36 @@
+{
+  "background_color": "#ffffff",
+  "description": "Aplicação para sortear times no futebol de domingo",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "name": "Sorteio futnerd",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Sorteio futnerd",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "android-launchericon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "android-launchericon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [],
+  "display_override": [
+    "browser",
+    "fullscreen",
+    "minimal-ui",
+    "standalone",
+    "window-controls-overlay"
+  ]
+}
