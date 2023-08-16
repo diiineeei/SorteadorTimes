@@ -5,9 +5,9 @@
   "display": "fullscreen",
   "name": "Sorteio futnerd",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/SorteadorTimes/",
   "short_name": "Sorteio futnerd",
-  "start_url": "/",
+  "start_url": "/SorteadorTimes/",
   "theme_color": "#ffffff",
   "categories": [
     "entertainment",
