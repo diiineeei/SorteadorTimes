@@ -1,0 +1,31 @@
+.jumbotron-heading {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+.parallax {
+    /* The image used */
+    background-image: url("https://diiineeei.github.io/SorteadorTimes/assets/bg.jpg");
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.center-images {
+    display: flex;
+    justify-content: center;
+}
+
+.center-images .card {
+    margin: 10px;
+}
+
+.transparent{
+    background:rgba(1,1,1,0.5);
+}
