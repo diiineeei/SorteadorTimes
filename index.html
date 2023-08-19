@@ -38,9 +38,11 @@
 </script>
 <div class="container">
     <h1 class="text-center jumbotron-heading bg-transparent text-success font-weight-bold">Sorteador de Times 20:30</h1>
-    <p class="lead text-muted transparent text-white">Sorteador é uma aplicação simples e eficiente projetada para realizar sorteios de forma fácil e rápida. Ele foi desenvolvido para ser uma ferramenta prática e útil, permitindo que você sorteie equipes, prémios ou qualquer outro tipo de seleção aleatória.</p>
 </div>
+<div class="container transparent">
+    <p class="lead text-white">Sorteador é uma aplicação simples e eficiente projetada para realizar sorteios de forma fácil e rápida. Ele foi desenvolvido para ser uma ferramenta prática e útil, permitindo que você sorteie equipes, prémios ou qualquer outro tipo de seleção aleatória.</p>
 </div>
+<div class="container transparent" id="selectPlayers" style="margin-bottom: 10px"></div>
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-6">
@@ -166,9 +168,71 @@
         }
     ];
 
+    function criaChecks(){
+        const selectPlayers = document.getElementById('selectPlayers');
+        let rowDiv;
+
+        for (let i = 0; i < jsonData.length; i++) {
+            if (rowDiv) {
+                selectPlayers.appendChild(rowDiv);
+            }
+            rowDiv = document.createElement('div');
+            rowDiv.className = 'form-check form-check-inline';
+
+            const timePlayer = document.createElement('input');
+            timePlayer.className = 'form-check-input';
+            timePlayer.type = 'checkbox';
+            timePlayer.value = jsonData[i].nome;
+
+            const timePlayerName = document.createElement('label');
+            timePlayerName.className = 'form-check-label text-white';
+            timePlayerName.for = 'defaultCheck' + i;
+            timePlayerName.type = 'checkbox';
+            timePlayerName.textContent = jsonData[i].nome;
+
+            const image = document.createElement('img');
+            image.src = jsonData[i].imagem;
+            image.alt = jsonData[i].nome + "'s Image";
+            image.className = 'card-img-top';
+            image.style.width = '30px';
+            image.style.height = '30px';
+            image.style.marginTop = '10px';
+            image.style.marginBottom = '10px';
+            image.style.marginRight = '10px';
+
+            rowDiv.appendChild(timePlayer);
+            rowDiv.appendChild(image);
+            rowDiv.appendChild(timePlayerName);
+        }
+    }
+    criaChecks()
+
+    function removeDuplicates(array) {
+        var uniqueArray = [];
+
+        for (var i = 0; i < array.length; i++) {
+            if (uniqueArray.indexOf(array[i].toLowerCase()) === -1) {
+                uniqueArray.push(array[i].toLowerCase());
+            }
+        }
+
+        return uniqueArray;
+    }
+
     function jogadoresTextArea() {
+        var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
         const listaJogadores = document.getElementById('listaJogadores').value;
-        const nomes = listaJogadores.trim().split('\n');
+        var nomes = listaJogadores.trim().split('\n');
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                nomes.push(checkbox.value.toLowerCase());
+            }
+        });
+
+        nomes = removeDuplicates(nomes);
+
         jsonDataTextArea = [];
 
         for (const nome of nomes) {
