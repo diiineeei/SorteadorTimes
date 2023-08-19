@@ -224,10 +224,10 @@ function sortearTimes(jsonPlayers) {
             }
 
             rowDiv = document.createElement('div');
-            rowDiv.className = 'row mb-4 col-md-12 center-images';
+            rowDiv.className = 'row mb-4 col-md-12 center-images transparent';
 
             const timeNumber = document.createElement('div');
-            timeNumber.className = 'col-md-12 text-center h4 text-danger font-weight-bold';
+            timeNumber.className = 'col-md-12 text-center mt-2 h4 text-white font-weight-bold';
             timeNumber.textContent = 'Time ' + (i / 5 + 1);
 
             rowDiv.appendChild(timeNumber);
