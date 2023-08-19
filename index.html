@@ -183,12 +183,16 @@
             timePlayer.className = 'form-check-input';
             timePlayer.type = 'checkbox';
             timePlayer.value = jsonData[i].nome;
+            timePlayer.id = 'checkboxPlayer' + i;
 
             const timePlayerName = document.createElement('label');
             timePlayerName.className = 'form-check-label text-white';
             timePlayerName.for = 'defaultCheck' + i;
             timePlayerName.type = 'checkbox';
             timePlayerName.textContent = jsonData[i].nome;
+            timePlayerName.addEventListener('click', function() {
+                timePlayer.checked = !timePlayer.checked;
+            });
 
             const image = document.createElement('img');
             image.src = jsonData[i].imagem;
@@ -199,6 +203,9 @@
             image.style.marginTop = '10px';
             image.style.marginBottom = '10px';
             image.style.marginRight = '10px';
+            image.addEventListener('click', function() {
+                timePlayer.checked = !timePlayer.checked;
+            });
 
             rowDiv.appendChild(timePlayer);
             rowDiv.appendChild(image);
